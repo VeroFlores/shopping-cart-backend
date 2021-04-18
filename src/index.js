@@ -1,9 +1,11 @@
 const express = require('express')
 const app = express()
+var cors = require('cors')
 // const database = require('./database');
 const dotenv=require('dotenv');
 var mysql      = require('mysql');
 dotenv.config()
+app.use(cors());
 // setting
 // es como crear variable es como const port=3000
 // process.env sirve decir que si un servicio en la nube no da puerto se toma en todo caso usar 3000
