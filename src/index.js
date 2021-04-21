@@ -42,7 +42,7 @@ connection.connect(function(err) {
     })
   })
   app.get('/category', (request, response) => {
-    connection.query("SELECT * FROM category'",(err,result)=>{
+    connection.query("SELECT * FROM category",(err,result)=>{
       if (err) throw err;
       (response.json(result));
     })
