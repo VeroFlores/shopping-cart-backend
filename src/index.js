@@ -49,9 +49,9 @@ app.get('/category', (request, response) => {
   })
 })
 app.get(`/product`, (request, response) => {
-  console.log(request.query);
-  const search = req.query.search;
-  connection.query(`SELECT * FROM product WHERE name LIKE '%${search}%`,(err,result)=>{
+  const search = request.query.search;
+  console.log(search);
+  connection.query(`SELECT * FROM product WHERE name LIKE '%${search}%'`,(err,result)=>{
     if (err) throw err;
     (response.json(result));
   })
