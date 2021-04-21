@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const router = express.Router();
 var cors = require('cors')
 // const database = require('./database');
 const dotenv=require('dotenv');
@@ -35,20 +36,22 @@ connection.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
   });
-app.get('/allProducts', (request, response) => {
+router.get('/allProducts', (request, response) => {
   connection.query("SELECT * FROM product",(err,result)=>{
     if (err) reject(err);
     (response.json(result));
   })
 })
-app.get('/category', (request, response) => {
+router.get('/category', (request, response) => {
   connection.query("SELECT * FROM product WHERE category LIKE '%1%'",(err,result)=>{
     if (err) throw err;
     (response.json(result));
   })
 })
-app.get('/product', (request, response) => {
-  connection.query("SELECT * FROM product WHERE name LIKE '%COCA%'",(err,result)=>{
+router.get(`/product`, (request, response) => {
+  console.log(request.query);
+  const search = req.query.search;
+  connection.query(`SELECT * FROM product WHERE name LIKE '%${search}%`,(err,result)=>{
     if (err) throw err;
     (response.json(result));
   })
