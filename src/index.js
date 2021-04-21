@@ -36,19 +36,19 @@ connection.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
   });
-router.get('/allProducts', (request, response) => {
+app.get('/allProducts', (request, response) => {
   connection.query("SELECT * FROM product",(err,result)=>{
     if (err) reject(err);
     (response.json(result));
   })
 })
-router.get('/category', (request, response) => {
+app.get('/category', (request, response) => {
   connection.query("SELECT * FROM product WHERE category LIKE '%1%'",(err,result)=>{
     if (err) throw err;
     (response.json(result));
   })
 })
-router.get(`/product`, (request, response) => {
+app.get(`/product`, (request, response) => {
   console.log(request.query);
   const search = req.query.search;
   connection.query(`SELECT * FROM product WHERE name LIKE '%${search}%`,(err,result)=>{
